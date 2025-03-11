@@ -1,9 +1,9 @@
 import React from 'react';
 import WishListSection from "../../../containers/WishList/WishListSection/WishListSection";
 
-function Page(props) {
+function Page() {
     return (
-        <WishListSection/>
+        <WishListSection />
     );
 }
 
