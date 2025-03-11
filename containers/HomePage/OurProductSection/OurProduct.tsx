@@ -1,7 +1,10 @@
 import React from 'react';
 import FlashSales from "../../../components/FlashSales/FlashSales";
 
-function OurProductSection(props) {
+// Define the props type (empty for now)
+interface OurProductSectionProps {}
+
+function OurProductSection(props: OurProductSectionProps) {
     const products = [
         {
             id: '1', // Changed id to string
