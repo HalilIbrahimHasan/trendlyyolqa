@@ -2,13 +2,7 @@ import React from 'react';
 import { Button, Container, Typography } from '@mui/material';
 import Image from 'next/image';
 
-// Define the prop types for CountdownItem component
-interface CountdownItemProps {
-  value: string | number;
-  label: string;
-}
-
-const CountdownItem: React.FC<CountdownItemProps> = ({ value, label }) => (
+const CountdownItem = ({ value, label }: { value: string | number; label: string }) => (
   <Typography
     component={'div'}
     sx={{
@@ -139,15 +133,22 @@ const PromoBanner = () => {
               width: '50%',
             }}
           >
-            <Image
-              src="/assets/png/boombox.png"
-              alt="JBL Speaker"
-              width={500}
-              height={1000}
-              backgroundColor={
-                'radial-gradient(circle, rgba(247,246,249,1) 0%, rgba(86,86,87,1) 0%, rgba(0,0,0,1) 100%)'
-              }
-            />
+            {/* Wrap the image with a div to apply background color */}
+            <div
+              style={{
+                background: 'radial-gradient(circle, rgba(247,246,249,1) 0%, rgba(86,86,87,1) 0%, rgba(0,0,0,1) 100%)',
+                position: 'relative',
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <Image
+                src="/assets/png/boombox.png"
+                alt="JBL Speaker"
+                width={500}
+                height={1000}
+              />
+            </div>
           </Typography>
         </Typography>
       </Typography>
