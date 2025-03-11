@@ -38,16 +38,17 @@ const ProductCard = styled(Card)(({theme}) => ({
     },
 }));
 
-const DiscountBadge = styled(Box)(({theme, color}) => ({
-    position: 'absolute',
-    top: 12,
-    left: 12,
-    backgroundColor: color || '#DB4444',
-    color: 'white',
-    padding: '4px 8px',
-    borderRadius: '4px',
-    zIndex: 1,
-}));
+const DiscountBadge = styled(Box)<{ theme: any; color: string | undefined }>`
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: ${(props) => props.color || '#DB4444'};
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    z-index: 1;
+`;
+
 
 const IconWrapper = styled(Box)(({theme}) => ({
     position: 'absolute',
