@@ -21,6 +21,37 @@ import {
     KeyboardArrowRight,
 } from '@mui/icons-material';
 
+// Define types for the product object and props
+interface Product {
+    id: string;
+    name: string;
+    image: string;
+    price: number;
+    oldPrice?: number;
+    discount?: number;
+    rating: number;
+    reviews: number;
+    colors?: string[];
+}
+
+interface FlashSalesProps {
+    subtitle: string;
+    subtitleColor: string;
+    title: string;
+    products: Product[];
+    showTimer?: boolean;
+    onAddToCart?: boolean;
+    btnOpen?: boolean;
+    viewBtnOpen?: boolean;
+    viewBtnOpenColor?: string;
+    viewBtnOpenText?: string;
+    viewBtnOpenTextColor?: string;
+    discountBadgeColor?: string;
+    discountBadgeText?: string;
+    enableSlider?: boolean;
+    cardsPerRow?: number;
+}
+
 const SectionDivider = styled(Divider)({
     margin: '48px 0',
     borderColor: '#E8E8E8',
@@ -92,7 +123,7 @@ const TimerBox = styled(Box)({
     borderRadius: '4px',
 });
 
-const FlashSales = ({
+const FlashSales: React.FC<FlashSalesProps> = ({
     subtitle,
     subtitleColor,
     title,
@@ -108,7 +139,7 @@ const FlashSales = ({
     discountBadgeText,
     enableSlider = true,
     cardsPerRow = 4,
-}: any) => {
+}) => {
     const [currentTime, setCurrentTime] = useState({
         days: 3,
         hours: 23,
@@ -116,7 +147,7 @@ const FlashSales = ({
         seconds: 56,
     });
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [selectedColors, setSelectedColors] = useState({});
+    const [selectedColors, setSelectedColors] = useState<{ [key: string]: string }>({});
 
     useEffect(() => {
         if (showTimer) {
