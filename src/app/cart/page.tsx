@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
-import Image from 'next/image';
+import Image from 'next/image';  // Using the Image component for optimization
 
 // Define the types for the CartItem props
 interface CartItemProps {
