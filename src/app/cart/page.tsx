@@ -53,6 +53,7 @@ const CartItem: React.FC<CartItemProps> = ({ image, name, price, quantity }) => 
                     width={60} 
                     height={60}
                     style={{ objectFit: 'contain' }}
+                    priority={quantity < 2} // Optimize above-the-fold images
                 />
             </Box>
             <Box sx={{ flex: 1 }}>
@@ -170,7 +171,7 @@ const ShoppingCart = () => {
                                     outline: 'none'
                                 }
                             }}
-                            color="primary" // Fixed color prop
+                            color="primary"
                         />
                         <Button
                             variant="contained"
