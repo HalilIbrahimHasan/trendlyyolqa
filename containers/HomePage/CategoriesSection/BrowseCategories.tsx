@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import {Box, Container, Typography, IconButton, Stack, styled, Divider} from '@mui/material';
+import { Box, Container, Typography, IconButton, Stack, styled, Divider } from '@mui/material';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import ComputerIcon from '@mui/icons-material/Computer';
@@ -18,7 +18,12 @@ const SectionDivider = styled(Divider)(({ theme }) => ({
     width: '100%'
 }));
 
-const CategoryBox = styled(Box)(({ theme, active }) => ({
+// Define the type for the props, including the `active` prop
+interface CategoryBoxProps {
+    active?: boolean; // active prop to indicate if the category is selected
+}
+
+const CategoryBox = styled(Box)<CategoryBoxProps>(({ theme, active }) => ({
     width: '170px',
     height: '145px',
     display: 'flex',
@@ -59,7 +64,7 @@ const BrowseCategories = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsPerView = 6;
 
-    const handleSlide = (direction) => {
+    const handleSlide = (direction: 'left' | 'right') => {
         if (direction === 'left') {
             setCurrentIndex(prev => Math.max(prev - 1, 0));
         } else {
