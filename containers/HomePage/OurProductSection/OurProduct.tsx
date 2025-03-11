@@ -1,7 +1,13 @@
 import React from 'react';
 import FlashSales from "../../../components/FlashSales/FlashSales";
 
-function OurProductSection(props) {
+// Define the types for the props
+interface OurProductSectionProps {
+    // If you plan to pass props, define them here
+    // Example: products: { id: number; name: string; image: string; price: number; oldPrice?: number; rating: number; reviews: number; colors?: string[] }[];
+}
+
+const OurProductSection: React.FC<OurProductSectionProps> = (props) => {
     const products = [
         {
             id: 1,
