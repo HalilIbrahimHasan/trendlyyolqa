@@ -1,22 +1,15 @@
 import React from 'react';
 import FlashSales from "../../../components/FlashSales/FlashSales";
 
-// Define the type for the Product
-interface Product {
-  id: string; // change to string
-  name: string;
-  image: string;
-  price: number;
-  oldPrice?: number;
-  rating: number;
-  reviews: number;
-  colors?: string[];
+// Define the types for the props (if any props are passed)
+interface ProductSectionProps {
+  // Add specific prop types here if any
 }
 
-const OurProductSection = () => {
-  const products: Product[] = [
+function ProductSection(props: ProductSectionProps) {
+  const products = [
     {
-      id: '1', // updated id type to string
+      id: '1', // Updated id to string
       name: 'The North Coat',
       image: 'assets/png/coat.png',
       price: 120,
@@ -26,7 +19,7 @@ const OurProductSection = () => {
       colors: ['#000000', '#FFFFFF'],
     },
     {
-      id: '2', // updated id type to string
+      id: '2', // Updated id to string
       name: 'Gucci Duffle Bag',
       image: 'assets/png/bag.png',
       price: 120,
@@ -35,7 +28,7 @@ const OurProductSection = () => {
       reviews: 88,
     },
     {
-      id: '3', // updated id type to string
+      id: '3', // Updated id to string
       name: 'RGB Liquid CPU Cooler',
       image: 'assets/png/cpu-cooler.png',
       price: 960,
@@ -45,7 +38,7 @@ const OurProductSection = () => {
       colors: ['#FF0000', '#00FF00', '#0000FF'],
     },
     {
-      id: '4', // updated id type to string
+      id: '4', // Updated id to string
       name: 'Small Bookshelf',
       image: 'assets/png/desk.png',
       price: 960,
@@ -54,7 +47,7 @@ const OurProductSection = () => {
       reviews: 75,
     },
     {
-      id: '5', // updated id type to string
+      id: '5', // Updated id to string
       name: 'Gaming Chair',
       image: 'assets/png/chair.png',
       price: 250,
@@ -64,7 +57,7 @@ const OurProductSection = () => {
       colors: ['#8B0000', '#FFA500'],
     },
     {
-      id: '6', // updated id type to string
+      id: '6', // Updated id to string
       name: 'Smartphone',
       image: 'assets/png/keyboard.png',
       price: 700,
@@ -72,7 +65,7 @@ const OurProductSection = () => {
       reviews: 320,
     },
     {
-      id: '7', // updated id type to string
+      id: '7', // Updated id to string
       name: 'Bluetooth Speaker',
       image: 'assets/png/gamepad.png',
       price: 150,
@@ -81,7 +74,7 @@ const OurProductSection = () => {
       colors: ['#000000', '#FFFF00'],
     },
     {
-      id: '8', // updated id type to string
+      id: '8', // Updated id to string
       name: 'Wireless Mouse',
       image: 'assets/png/boombox.png',
       price: 50,
@@ -104,6 +97,6 @@ const OurProductSection = () => {
       cardsPerRow={8}
     />
   );
-};
+}
 
-export default OurProductSection;
+export default ProductSection;
