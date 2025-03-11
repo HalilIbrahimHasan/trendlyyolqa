@@ -15,9 +15,8 @@ import {
 } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
-import Image from 'next/image'; // Import Image for optimization
+import Image from 'next/image';
 
-// Define the types for the CartItem props
 interface CartItemProps {
   image: string;
   name: string;
@@ -26,7 +25,7 @@ interface CartItemProps {
 }
 
 const CartItem: React.FC<CartItemProps> = ({ image, name, price, quantity }) => {
-    const [qty, setQty] = useState<number>(quantity); // Explicitly setting type to number
+    const [qty, setQty] = useState<number>(quantity);
 
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3, position: 'relative' }}>
@@ -48,8 +47,13 @@ const CartItem: React.FC<CartItemProps> = ({ image, name, price, quantity }) => 
                 >
                     <CloseIcon fontSize="small" />
                 </IconButton>
-                {/* Replaced <img> with <Image /> for optimization */}
-                <Image src={image} alt={name} width={60} height={60} objectFit="contain" />
+                <Image 
+                    src={image} 
+                    alt={name} 
+                    width={60} 
+                    height={60}
+                    style={{ objectFit: 'contain' }}
+                />
             </Box>
             <Box sx={{ flex: 1 }}>
                 <Typography variant="body1">{name}</Typography>
@@ -58,7 +62,7 @@ const CartItem: React.FC<CartItemProps> = ({ image, name, price, quantity }) => 
             <Box sx={{ width: 100, textAlign: 'right' }}>
                 <Select
                     value={qty}
-                    onChange={(e) => setQty(Number(e.target.value))} // Explicitly convert value to number
+                    onChange={(e) => setQty(Number(e.target.value))}
                     IconComponent={KeyboardArrowDownIcon}
                     sx={{
                         color: 'black',
@@ -75,7 +79,7 @@ const CartItem: React.FC<CartItemProps> = ({ image, name, price, quantity }) => 
                     }}
                 >
                     {[1, 2, 3, 4, 5].map((num) => (
-                        <MenuItem key={num} value={num} color={'black'} sx={{ color: 'black' }}>
+                        <MenuItem key={num} value={num} sx={{ color: 'black' }}>
                             {num.toString().padStart(2, '0')}
                         </MenuItem>
                     ))}
@@ -166,7 +170,7 @@ const ShoppingCart = () => {
                                     outline: 'none'
                                 }
                             }}
-                            color="primary" // Corrected color prop
+                            color="primary" // Fixed color prop
                         />
                         <Button
                             variant="contained"
