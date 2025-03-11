@@ -7,7 +7,6 @@ import {
     Typography,
     InputBase,
     IconButton,
-    useTheme,
     useMediaQuery,
     Menu,
     MenuItem,
@@ -23,25 +22,25 @@ import {
 } from '@mui/icons-material';
 import Link from 'next/link';
 
-const SearchWrapper = styled('div')(({ theme }) => ({
+const SearchWrapper = styled('div')({
     position: 'relative',
     color: 'black',
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: '4px',
     backgroundColor: '#f5f5f5',
     '&:hover': {
         backgroundColor: '#ebebeb',
     },
-    marginRight: theme.spacing(2),
+    marginRight: '16px',
     marginLeft: 0,
     width: '300px !important',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
+    '@media (min-width: 600px)': {
+        marginLeft: '24px',
         width: 'auto',
     },
-}));
+});
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
+const SearchIconWrapper = styled('div')({
+    padding: '0 16px',
     top: 0,
     right: 0,
     height: '100%',
@@ -50,20 +49,20 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-}));
+});
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledInputBase = styled(InputBase)({
     color: 'black',
     '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
+        padding: '8px 8px 8px 0',
+        paddingLeft: 'calc(1em + 32px)',
+        transition: 'width 0.3s ease',
         width: '250px !important',
-        [theme.breakpoints.up('md')]: {
+        '@media (min-width: 768px)': {
             width: '40ch',
         },
     },
-}));
+});
 
 const StyledLink = styled(Link)({
     color: 'black',
@@ -74,8 +73,7 @@ const StyledLink = styled(Link)({
 });
 
 const Navbar = () => {
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+    const isMobile = useMediaQuery('(max-width: 960px)');
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -107,11 +105,7 @@ const Navbar = () => {
                     </Typography>
 
                     {!isMobile && (
-                        <Stack
-                            direction="row"
-                            spacing={4}
-                            sx={{ flexGrow: 0 }}
-                        >
+                        <Stack direction="row" spacing={4} sx={{ flexGrow: 0 }}>
                             {menuItems.map((item) => (
                                 <StyledLink href={`/${item.toLowerCase().replace(' ', '-')}`} key={item}>
                                     <Typography sx={{ fontWeight: 500 }}>
@@ -122,11 +116,7 @@ const Navbar = () => {
                         </Stack>
                     )}
 
-                    <Typography component={'div'} sx={{
-                        display:'flex',
-                        justifyContent: 'end',
-                        width:'540px'
-                    }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '540px' }}>
                         <SearchWrapper>
                             <StyledInputBase
                                 placeholder="What are you looking for?"
@@ -144,39 +134,36 @@ const Navbar = () => {
                                 <ShoppingCartIcon />
                             </IconButton>
                         </Typography>
-                    </Typography>
-
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-
-                        {isMobile && (
-                            <>
-                                <IconButton
-                                    edge="start"
-                                    color="inherit"
-                                    aria-label="menu"
-                                    onClick={handleMenu}
-                                >
-                                    <MenuIcon />
-                                </IconButton>
-                                <Menu
-                                    anchorEl={anchorEl}
-                                    open={Boolean(anchorEl)}
-                                    onClose={handleClose}
-                                >
-                                    {menuItems.map((item) => (
-                                        <MenuItem
-                                            key={item}
-                                            onClick={handleClose}
-                                            component={Link}
-                                            href={`/${item.toLowerCase().replace(' ', '-')}`}
-                                        >
-                                            {item}
-                                        </MenuItem>
-                                    ))}
-                                </Menu>
-                            </>
-                        )}
                     </Box>
+
+                    {isMobile && (
+                        <>
+                            <IconButton
+                                edge="start"
+                                color="inherit"
+                                aria-label="menu"
+                                onClick={handleMenu}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Menu
+                                anchorEl={anchorEl}
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                            >
+                                {menuItems.map((item) => (
+                                    <MenuItem
+                                        key={item}
+                                        onClick={handleClose}
+                                        component={Link}
+                                        href={`/${item.toLowerCase().replace(' ', '-')}`}
+                                    >
+                                        {item}
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </>
+                    )}
                 </Toolbar>
             </Container>
         </AppBar>
