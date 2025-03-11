@@ -1,20 +1,20 @@
-'use client'
-import React, {useState} from 'react';
-import {AppBar, Toolbar, Typography, Box, Button, Select, MenuItem} from '@mui/material';
+'use client';
+import React, { useState } from 'react';
+import { AppBar, Toolbar, Typography, Box, Button, Select, MenuItem } from '@mui/material';
 
 function Header() {
 
     const [language, setLanguage] = useState('English');
 
-    const handleLanguageChange = (event) => {
+    // Updated event type to React.ChangeEvent<{ value: string }>
+    const handleLanguageChange = (event: React.ChangeEvent<{ value: string }>) => {
         setLanguage(event.target.value);
     };
 
-
     return (
-        <Box sx={{flexGrow: 1}}>
-            <AppBar position="static" sx={{backgroundColor: 'black', height: '48px'}}>
-                <Toolbar sx={{minHeight: '48px', paddingX: '16px', display: 'flex', justifyContent: 'space-evenly'}}>
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static" sx={{ backgroundColor: 'black', height: '48px' }}>
+                <Toolbar sx={{ minHeight: '48px', paddingX: '16px', display: 'flex', justifyContent: 'space-evenly' }}>
                     <Typography
                         component="p"
                         sx={{
@@ -38,7 +38,7 @@ function Header() {
                         </Button>
                     </Typography>
 
-                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <Select
                             value={language}
                             onChange={handleLanguageChange}
