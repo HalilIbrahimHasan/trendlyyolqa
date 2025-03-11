@@ -13,12 +13,11 @@ import {
     Stack, Container
 } from '@mui/material';
 
-const page = () => {
+const Page = () => { // Component name changed from 'page' to 'Page'
     return (
-        <Container maxWidth="lg" sx={{py: 10}}>
+        <Container maxWidth="lg" sx={{ py: 10 }}>
             <Grid container spacing={4}>
                 <Grid item xs={12} md={7}>
-
                     <Typography variant="h4" sx={{ mb: 3 }}>
                         Billing Details
                     </Typography>
@@ -173,45 +172,45 @@ const page = () => {
                     </Stack>
                 </Grid>
                 <Grid item xs={12} md={5} mt={8}>
-                    <Box sx={{p: 3, borderRadius: 1 }}>
+                    <Box sx={{ p: 3, borderRadius: 1 }}>
                         <Stack spacing={2}>
-                            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                                <Box sx={{display: 'flex', alignItems: 'center', gap: 2}}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                                     <Box
                                         component="img"
                                         src="/assets/png/tv.png"
                                         alt="LCD Monitor"
-                                        sx={{width: 50, height: 50}}
+                                        sx={{ width: 50, height: 50 }}
                                     />
                                     <Typography>LCD Monitor</Typography>
                                 </Box>
                                 <Typography>$650</Typography>
                             </Box>
 
-                            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                                <Box sx={{display: 'flex', alignItems: 'center', gap: 2}}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                                     <Box
                                         component="img"
                                         src="/assets/png/gamepad.png"
                                         alt="H1 Gamepad"
-                                        sx={{width: 50, height: 50}}
+                                        sx={{ width: 50, height: 50 }}
                                     />
                                     <Typography>H1 Gamepad</Typography>
                                 </Box>
                                 <Typography>$1100</Typography>
                             </Box>
 
-                            <Box sx={{display: 'flex', justifyContent: 'space-between', mt: 2}}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
                                 <Typography>Subtotal:</Typography>
                                 <Typography>$1750</Typography>
                             </Box>
-                            <hr/>
-                            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+                            <hr />
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <Typography>Shipping:</Typography>
                                 <Typography>Free</Typography>
                             </Box>
-                            <hr/>
-                            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+                            <hr />
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <Typography variant="h6">Total:</Typography>
                                 <Typography variant="h6">$1750</Typography>
                             </Box>
@@ -221,20 +220,20 @@ const page = () => {
                                     <FormControlLabel
                                         value="bank"
                                         color={'black'}
-                                        control={<Radio/>}
+                                        control={<Radio />}
                                         label={
-                                            <Box sx={{display: 'flex', alignItems: 'center', justifyContent:'space-between', gap: 2}}>
+                                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
                                                 Bank
-                                                <Box sx={{display: 'flex', gap: 1, ml: 2}}>
+                                                <Box sx={{ display: 'flex', gap: 1, ml: 2 }}>
                                                     <img
                                                         src="/assets/png/visa.png"
                                                         alt="bKash"
-                                                        style={{width: '50px', objectFit: 'contain'}}
+                                                        style={{ width: '50px', objectFit: 'contain' }}
                                                     />
                                                     <img
                                                         src="/assets/png/master-card.png"
                                                         alt="Visa"
-                                                        style={{width: '50px', objectFit: 'contain'}}
+                                                        style={{ width: '50px', objectFit: 'contain' }}
                                                     />
                                                 </Box>
                                             </Box>
@@ -243,13 +242,13 @@ const page = () => {
                                     <FormControlLabel
                                         value="cash"
                                         color={'black'}
-                                        control={<Radio/>}
+                                        control={<Radio />}
                                         label="Cash on delivery"
                                     />
                                 </RadioGroup>
                             </FormControl>
 
-                            <Box sx={{display: 'flex', gap: 1}}>
+                            <Box sx={{ display: 'flex', gap: 1 }}>
                                 <TextField
                                     placeholder="Coupon Code"
                                     variant="outlined"
@@ -307,4 +306,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page; // Capitalized component name
