@@ -1,13 +1,12 @@
 'use client';
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Box, Button, Select, MenuItem } from '@mui/material';
+import { AppBar, Toolbar, Typography, Box, Button, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 
 function Header() {
-
     const [language, setLanguage] = useState('English');
 
-    // Updated event type to React.ChangeEvent<{ value: string }>
-    const handleLanguageChange = (event: React.ChangeEvent<{ value: string }>) => {
+    // Update the event type to SelectChangeEvent<string>
+    const handleLanguageChange = (event: SelectChangeEvent<string>) => {
         setLanguage(event.target.value);
     };
 
@@ -57,12 +56,8 @@ function Header() {
                                 },
                             }}
                         >
-                            <MenuItem sx={{
-                                color: '#363738'
-                            }} value="English">English</MenuItem>
-                            <MenuItem sx={{
-                                color: '#363738'
-                            }} value="Türkçe">Turkish</MenuItem>
+                            <MenuItem sx={{ color: '#363738' }} value="English">English</MenuItem>
+                            <MenuItem sx={{ color: '#363738' }} value="Türkçe">Turkish</MenuItem>
                         </Select>
                     </Box>
                 </Toolbar>
