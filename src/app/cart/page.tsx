@@ -166,6 +166,7 @@ const ShoppingCart = () => {
                                     outline: 'none'
                                 }
                             }}
+                            color="primary" // Corrected color prop
                         />
                         <Button
                             variant="contained"
