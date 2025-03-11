@@ -231,6 +231,7 @@ const WishlistSection = () => {
                 </Box>
             </Box>
             <FlashSales
+                title="Flash Sales"
                 subtitle={"Just For You"}
                 subtitleColor={'black'}
                 showTimer={false}
