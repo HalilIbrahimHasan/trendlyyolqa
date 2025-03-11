@@ -1,16 +1,10 @@
 import React from 'react';
 import FlashSales from "../../../components/FlashSales/FlashSales";
 
-// Define the types for the props
-interface OurProductSectionProps {
-    // If you plan to pass props, define them here
-    // Example: products: { id: number; name: string; image: string; price: number; oldPrice?: number; rating: number; reviews: number; colors?: string[] }[];
-}
-
-const OurProductSection: React.FC<OurProductSectionProps> = (props) => {
+function OurProductSection(props) {
     const products = [
         {
-            id: 1,
+            id: '1', // Changed id to string
             name: 'The North Coat',
             image: 'assets/png/coat.png',
             price: 120,
@@ -20,7 +14,7 @@ const OurProductSection: React.FC<OurProductSectionProps> = (props) => {
             colors: ['#000000', '#FFFFFF'],
         },
         {
-            id: 2,
+            id: '2', // Changed id to string
             name: 'Gucci Duffle Bag',
             image: 'assets/png/bag.png',
             price: 120,
@@ -29,7 +23,7 @@ const OurProductSection: React.FC<OurProductSectionProps> = (props) => {
             reviews: 88,
         },
         {
-            id: 3,
+            id: '3', // Changed id to string
             name: 'RGB Liquid CPU Cooler',
             image: 'assets/png/cpu-cooler.png',
             price: 960,
@@ -39,7 +33,7 @@ const OurProductSection: React.FC<OurProductSectionProps> = (props) => {
             colors: ['#FF0000', '#00FF00', '#0000FF'],
         },
         {
-            id: 4,
+            id: '4', // Changed id to string
             name: 'Small Bookshelf',
             image: 'assets/png/desk.png',
             price: 960,
@@ -48,7 +42,7 @@ const OurProductSection: React.FC<OurProductSectionProps> = (props) => {
             reviews: 75,
         },
         {
-            id: 5,
+            id: '5', // Changed id to string
             name: 'Gaming Chair',
             image: 'assets/png/chair.png',
             price: 250,
@@ -58,7 +52,7 @@ const OurProductSection: React.FC<OurProductSectionProps> = (props) => {
             colors: ['#8B0000', '#FFA500'],
         },
         {
-            id: 6,
+            id: '6', // Changed id to string
             name: 'Smartphone',
             image: 'assets/png/keyboard.png',
             price: 700,
@@ -66,7 +60,7 @@ const OurProductSection: React.FC<OurProductSectionProps> = (props) => {
             reviews: 320,
         },
         {
-            id: 7,
+            id: '7', // Changed id to string
             name: 'Bluetooth Speaker',
             image: 'assets/png/gamepad.png',
             price: 150,
@@ -75,7 +69,7 @@ const OurProductSection: React.FC<OurProductSectionProps> = (props) => {
             colors: ['#000000', '#FFFF00'],
         },
         {
-            id: 8,
+            id: '8', // Changed id to string
             name: 'Wireless Mouse',
             image: 'assets/png/boombox.png',
             price: 50,
