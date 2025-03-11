@@ -1,309 +1,230 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import {
     Box,
     Typography,
-    TextField,
-    Checkbox,
-    Radio,
-    RadioGroup,
-    FormControlLabel,
-    FormControl,
     Button,
-    Grid,
-    Stack, Container
+    TextField,
+    Stack,
+    Container,
+    IconButton,
+    Divider,
+    Paper,
+    Select,
+    MenuItem
 } from '@mui/material';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import CloseIcon from '@mui/icons-material/Close';
+import Image from 'next/image';
 
-const Page = () => { // Component name changed from 'page' to 'Page'
+interface CartItemProps {
+  image: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+const CartItem: React.FC<CartItemProps> = ({ image, name, price, quantity }) => {
+    const [qty, setQty] = useState<number>(quantity);
+
     return (
-        <Container maxWidth="lg" sx={{ py: 10 }}>
-            <Grid container spacing={4}>
-                <Grid item xs={12} md={7}>
-                    <Typography variant="h4" sx={{ mb: 3 }}>
-                        Billing Details
-                    </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3, position: 'relative' }}>
+            <Box sx={{ position: 'relative', width: 60, height: 60 }}>
+                <IconButton
+                    sx={{
+                        position: 'absolute',
+                        top: -10,
+                        left: -10,
+                        p: 0.1,
+                        bgcolor: '#DB4444',
+                        color: 'white',
+                        border: '1px solid #DB4444',
+                        '&:hover': {
+                            color: 'black',
+                            bgcolor: 'white'
+                        }
+                    }}
+                >
+                    <CloseIcon fontSize="small" />
+                </IconButton>
+                <Image 
+                    src={image} 
+                    alt={name} 
+                    width={60} 
+                    height={60}
+                    style={{ objectFit: 'contain' }}
+                    priority={quantity < 2} // Optimize above-the-fold images
+                />
+            </Box>
+            <Box sx={{ flex: 1 }}>
+                <Typography variant="body1">{name}</Typography>
+            </Box>
+            <Typography sx={{ width: 100, textAlign: 'center' }}>${price}</Typography>
+            <Box sx={{ width: 100, textAlign: 'right' }}>
+                <Select
+                    value={qty}
+                    onChange={(e) => setQty(Number(e.target.value))}
+                    IconComponent={KeyboardArrowDownIcon}
+                    sx={{
+                        color: 'black',
+                        width: 70,
+                        '.MuiOutlinedInput-notchedOutline': {
+                            borderColor: '#e0e0e0'
+                        },
+                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: '#e0e0e0'
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: '#e0e0e0'
+                        }
+                    }}
+                >
+                    {[1, 2, 3, 4, 5].map((num) => (
+                        <MenuItem key={num} value={num} sx={{ color: 'black' }}>
+                            {num.toString().padStart(2, '0')}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </Box>
+            <Typography sx={{ width: 100, textAlign: 'right' }}>${price * qty}</Typography>
+        </Box>
+    );
+};
 
-                    <Stack spacing={2}>
-                        <TextField
-                            fullWidth
-                            label="First Name"
+const ShoppingCart = () => {
+    const cartItems = [
+        {
+            id: 1,
+            name: 'LCD Monitor',
+            price: 850,
+            quantity: 1,
+            image: '/assets/png/tv.png'
+        },
+        {
+            id: 2,
+            name: 'H1 Gamepad',
+            price: 550,
+            quantity: 2,
+            image: '/assets/png/gamepad.png'
+        }
+    ];
+
+    return (
+        <Container maxWidth="lg" sx={{ py: 8 }}>
+            <Box sx={{ display: 'flex', gap: 4 }}>
+                <Box sx={{ flex: 1 }}>
+                    <Box sx={{ display: 'flex', borderBottom: 1, borderColor: 'divider', pb: 2, mb: 3 }}>
+                        <Typography sx={{ flex: 1 }}>Product</Typography>
+                        <Typography sx={{ width: 100, textAlign: 'left' }}>Price</Typography>
+                        <Typography sx={{ width: 100, textAlign: 'center' }}>Quantity</Typography>
+                        <Typography sx={{ width: 100, textAlign: 'right' }}>Subtotal</Typography>
+                    </Box>
+
+                    {cartItems.map(item => (
+                        <CartItem key={item.id} {...item} />
+                    ))}
+
+                    <Box sx={{ display: 'flex', gap: 2, mt: 4 }}>
+                        <Button
                             variant="outlined"
-                            color={'primary.dark'}
-                            required
                             sx={{
-                                backgroundColor: '#f8f8f8',
-                                '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: '#e0e0e0',
-                                    }
-                                },
-                                '& .MuiOutlinedInput-input':{
-                                    color: 'black'
-                                },
+                                borderColor: '#e0e0e0',
+                                color: 'black',
+                                '&:hover': {
+                                    borderColor: '#e0e0e0',
+                                    bgcolor: 'transparent'
+                                }
                             }}
-                        />
-
-                        <TextField
-                            fullWidth
-                            label="Company Name"
+                        >
+                            Return To Shop
+                        </Button>
+                        <Button
                             variant="outlined"
-                            color={'primary.dark'}
                             sx={{
-                                backgroundColor: '#f8f8f8',
-                                '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: '#e0e0e0',
-                                    },
-                                },
-                                '& .MuiOutlinedInput-input':{
-                                    color: 'black'
-                                },
+                                marginLeft: 'auto',
+                                borderColor: '#e0e0e0',
+                                color: 'black',
+                                '&:hover': {
+                                    borderColor: '#e0e0e0',
+                                    bgcolor: 'transparent'
+                                }
                             }}
-                        />
+                        >
+                            Update Cart
+                        </Button>
+                    </Box>
 
+                    <Box sx={{ display: 'flex', gap: 2, mt: 4 }}>
                         <TextField
-                            fullWidth
-                            label="Street Address"
-                            variant="outlined"
-                            color={'primary.dark'}
-                            required
+                            placeholder="Coupon Code"
+                            size="small"
                             sx={{
-                                backgroundColor: '#f8f8f8',
+                                width: 200,
                                 '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: '#e0e0e0',
-                                    },
+                                    borderRadius: 1
                                 },
-                                '& .MuiOutlinedInput-input':{
-                                    color: 'black'
+                                '& .MuiOutlinedInput-input': {
+                                    color: 'black',
+                                    border: '1px solid black'
                                 },
+                                '& .MuiOutlinedInput-input:focus': {
+                                    outline: 'none'
+                                }
                             }}
+                            color="primary"
                         />
-
-                        <TextField
-                            fullWidth
-                            label="Apartment, floor, etc. (optional)"
-                            variant="outlined"
-                            color={'primary.dark'}
+                        <Button
+                            variant="contained"
                             sx={{
-                                backgroundColor: '#f8f8f8',
-                                '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: '#e0e0e0',
-                                    },
-                                },
-                                '& .MuiOutlinedInput-input':{
-                                    color: 'black'
-                                },
+                                bgcolor: '#dc3545',
+                                color: 'white',
+                                '&:hover': {
+                                    bgcolor: '#c82333'
+                                }
                             }}
-                        />
+                        >
+                            Apply Coupon
+                        </Button>
+                    </Box>
+                </Box>
 
-                        <TextField
-                            fullWidth
-                            label="Town/City"
-                            variant="outlined"
-                            color={'primary.dark'}
-                            required
-                            sx={{
-                                backgroundColor: '#f8f8f8',
-                                '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: '#e0e0e0',
-                                    },
-                                },
-                                '& .MuiOutlinedInput-input':{
-                                    color: 'black'
-                                },
-                            }}
-                        />
-
-                        <TextField
-                            fullWidth
-                            label="Phone Number"
-                            variant="outlined"
-                            required
-                            color={'primary.dark'}
-                            sx={{
-                                backgroundColor: '#f8f8f8',
-                                '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: '#e0e0e0',
-                                    },
-                                },
-                                '& .MuiOutlinedInput-input':{
-                                    color: 'black'
-                                },
-                            }}
-                        />
-
-                        <TextField
-                            fullWidth
-                            label="Email Address"
-                            variant="outlined"
-                            required
-                            type="email"
-                            color={'primary.dark'}
-                            sx={{
-                                backgroundColor: '#f8f8f8',
-                                '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: '#e0e0e0',
-                                    },
-                                },
-                                '& .MuiOutlinedInput-input':{
-                                    color: 'black'
-                                },
-                            }}
-                        />
-
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    sx={{
-                                        color: '#d32f2f',
-                                        '&.Mui-checked': {
-                                            color: '#d32f2f',
-                                        },
-                                    }}
-                                />
-                            }
-                            label="Save this information for faster check-out next time"
-                            sx={{ mt: 2 }}
-                        />
-                    </Stack>
-                </Grid>
-                <Grid item xs={12} md={5} mt={8}>
-                    <Box sx={{ p: 3, borderRadius: 1 }}>
+                <Box sx={{ width: 300 }}>
+                    <Paper sx={{ color: 'black', height: 'fit-content', p: 3 }} elevation={0} variant="outlined">
+                        <Typography variant="h6" sx={{ mb: 2 }}>Cart Total</Typography>
                         <Stack spacing={2}>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                    <Box
-                                        component="img"
-                                        src="/assets/png/tv.png"
-                                        alt="LCD Monitor"
-                                        sx={{ width: 50, height: 50 }}
-                                    />
-                                    <Typography>LCD Monitor</Typography>
-                                </Box>
-                                <Typography>$650</Typography>
-                            </Box>
-
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                    <Box
-                                        component="img"
-                                        src="/assets/png/gamepad.png"
-                                        alt="H1 Gamepad"
-                                        sx={{ width: 50, height: 50 }}
-                                    />
-                                    <Typography>H1 Gamepad</Typography>
-                                </Box>
-                                <Typography>$1100</Typography>
-                            </Box>
-
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <Typography>Subtotal:</Typography>
                                 <Typography>$1750</Typography>
                             </Box>
-                            <hr />
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <Typography>Shipping:</Typography>
-                                <Typography>Free</Typography>
+                                <Typography color="success.main">Free</Typography>
                             </Box>
-                            <hr />
+                            <Divider />
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Typography variant="h6">Total:</Typography>
-                                <Typography variant="h6">$1750</Typography>
+                                <Typography>Total:</Typography>
+                                <Typography>$1750</Typography>
                             </Box>
-
-                            <FormControl component="fieldset">
-                                <RadioGroup defaultValue="bank">
-                                    <FormControlLabel
-                                        value="bank"
-                                        color={'black'}
-                                        control={<Radio />}
-                                        label={
-                                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
-                                                Bank
-                                                <Box sx={{ display: 'flex', gap: 1, ml: 2 }}>
-                                                    <img
-                                                        src="/assets/png/visa.png"
-                                                        alt="bKash"
-                                                        style={{ width: '50px', objectFit: 'contain' }}
-                                                    />
-                                                    <img
-                                                        src="/assets/png/master-card.png"
-                                                        alt="Visa"
-                                                        style={{ width: '50px', objectFit: 'contain' }}
-                                                    />
-                                                </Box>
-                                            </Box>
-                                        }
-                                    />
-                                    <FormControlLabel
-                                        value="cash"
-                                        color={'black'}
-                                        control={<Radio />}
-                                        label="Cash on delivery"
-                                    />
-                                </RadioGroup>
-                            </FormControl>
-
-                            <Box sx={{ display: 'flex', gap: 1 }}>
-                                <TextField
-                                    placeholder="Coupon Code"
-                                    variant="outlined"
-                                    size="small"
-                                    color={'black'}
-                                    fullWidth
-                                    sx={{
-                                        backgroundColor: 'white',
-                                        width: '350px',
-                                        '& .MuiOutlinedInput-input': {
-                                            color: 'black',
-                                            border: '1px solid black',
-                                            borderRadius: 1
-                                        },
-                                        '& .MuiOutlinedInput-input:hover': {
-                                            border: '1px solid black'
-                                        }
-                                    }}
-                                />
-                                <Button
-                                    variant="contained"
-                                    sx={{
-                                        width: '200px',
-                                        color: 'white',
-                                        backgroundColor: '#d32f2f',
-                                        '&:hover': {
-                                            backgroundColor: '#b71c1c',
-                                        },
-                                    }}
-                                >
-                                    Apply Coupon
-                                </Button>
-                            </Box>
-
                             <Button
+                                fullWidth
                                 variant="contained"
                                 sx={{
+                                    bgcolor: '#dc3545',
                                     color: 'white',
-                                    width: '200px',
-                                    backgroundColor: '#d32f2f',
                                     mt: 2,
-                                    py: 1.5,
                                     '&:hover': {
-                                        backgroundColor: '#b71c1c',
-                                    },
+                                        bgcolor: '#c82333'
+                                    }
                                 }}
                             >
-                                Place Order
+                                Proceed to checkout
                             </Button>
                         </Stack>
-                    </Box>
-                </Grid>
-            </Grid>
+                    </Paper>
+                </Box>
+            </Box>
         </Container>
     );
 };
 
-export default Page; // Capitalized component name
+export default ShoppingCart;
