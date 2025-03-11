@@ -1,113 +1,85 @@
 import React from 'react';
-import FlashSales from "../../../components/FlashSales/FlashSales";
+import { Box, Container, Typography, IconButton, Stack, styled } from '@mui/material';
+import Image from 'next/image'; // Import the Image component
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 
-function FlashSale(props) {
-    const products = [
-        {
-            id: 1,
-            name: 'HAVIT HV-G92 Gamepad',
-            image: 'assets/png/gamepad.png',
-            price: 120,
-            oldPrice: 160,
-            discount:30,
-            rating: 5,
-            reviews: 88,
-        },
-        {
-            id: 2,
-            name: 'HAVIT HV-G92 Gamepad',
-            image: 'assets/png/gamepad.png',
-            price: 120,
-            oldPrice: 160,
-            discount:30,
-            rating: 5,
-            reviews: 88,
-        },
-        {
-            id: 3,
-            name: 'AK-900 Wired Keyboard',
-            image: 'assets/png/keyboard.png',
-            price: 960,
-            oldPrice: 1160,
-            discount:30,
-            rating: 4.5,
-            reviews: 75,
-        },
-        {
-            id: 4,
-            name: 'AK-900 Wired Keyboard',
-            image: 'assets/png/keyboard.png',
-            price: 960,
-            oldPrice: 1160,
-            discount:30,
-            rating: 4.5,
-            reviews: 75,
-        },
-        {
-            id: 5,
-            name: 'IPS LCD Gaming Monitor',
-            image: 'assets/png/tv.png',
-            price: 370,
-            oldPrice: 400,
-            discount:30,
-            rating: 5,
-            reviews: 99,
-        },
-        {
-            id: 6,
-            name: 'IPS LCD Gaming Monitor',
-            image: 'assets/png/tv.png',
-            price: 370,
-            oldPrice: 400,
-            discount:30,
-            rating: 5,
-            reviews: 99,
-        },
-        {
-            id: 7,
-            name: 'S-Series Comfort Chair',
-            image: 'assets/png/chair.png',
-            price: 375,
-            oldPrice: 400,
-            discount:30,
-            rating: 4.5,
-            reviews: 99,
-        },
-        {
-            id: 8,
-            name: 'S-Series Comfort Chair',
-            image: 'assets/png/chair.png',
-            price: 375,
-            oldPrice: 400,
-            discount:30,
-            rating: 4.5,
-            reviews: 99,
-        }
-    ];
-
-    const currentTime = {
-        days: 2,
-        hours: 5,
-        minutes: 30,
-        seconds: 15,
-    };
-
-    return (
-        <FlashSales
-            subtitle={"today's"}
-            subtitleColor={'#DB4444'}
-            title="Flash Sales"
-            showTimer={true}
-            products={products}
-            currentTime={currentTime}
-            discountBadgeColor={'#DB4444'}
-            showSlider
-            viewBtnOpen={true}
-            viewBtnOpenColor={'#DB4444'}
-            viewBtnOpenText={'View All'}
-            viewBtnOpenTextColor={'white'}
-        />
-    );
+interface FlashSaleProps {
+  // Define any specific props here (e.g., if you expect certain props to be passed in)
 }
+
+const SectionDivider = styled('div')({
+  marginTop: '58px',
+  marginBottom: '58px',
+  marginLeft: '-12px',
+  borderColor: '#E8E8E8',
+  borderWidth: '1px',
+  width: '100%',
+});
+
+const FlashSale = (props: FlashSaleProps) => {
+  const products = [
+    { id: 1, name: 'Product 1', image: '/path/to/image1.jpg' },
+    { id: 2, name: 'Product 2', image: '/path/to/image2.jpg' },
+    // Add more product data
+  ];
+
+  const handleSlide = (direction: 'left' | 'right') => {
+    // Handle the sliding logic
+  };
+
+  return (
+    <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Stack direction="row" spacing={2} alignItems="center" mb={2}>
+        <Box sx={{ width: 20, height: 40, bgcolor: '#DB4444', borderRadius: 1 }} />
+        <Typography variant="subtitle1" color="#DB4444" fontWeight="600">
+          Flash Sale
+        </Typography>
+      </Stack>
+
+      <Stack direction="row" justifyContent="space-between" alignItems="center" mb={4}>
+        <Typography variant="h4" color="black" fontWeight="600">
+          Flash Sale Products
+        </Typography>
+        <Stack direction="row" spacing={1}>
+          <IconButton
+            onClick={() => handleSlide('left')}
+            sx={{
+              bgcolor: '#F5F5F5',
+              '&:hover': { bgcolor: '#E5E5E5' },
+            }}
+          >
+            <KeyboardArrowLeft />
+          </IconButton>
+          <IconButton
+            onClick={() => handleSlide('right')}
+            sx={{
+              bgcolor: '#F5F5F5',
+              '&:hover': { bgcolor: '#E5E5E5' },
+            }}
+          >
+            <KeyboardArrowRight />
+          </IconButton>
+        </Stack>
+      </Stack>
+
+      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
+        {products.map((product) => (
+          <Box key={product.id} sx={{ position: 'relative' }}>
+            {/* Use next/image for optimized images */}
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={170}
+              height={170}
+              style={{ objectFit: 'contain' }}
+            />
+            <Typography variant="subtitle1">{product.name}</Typography>
+          </Box>
+        ))}
+      </Box>
+      <SectionDivider />
+    </Container>
+  );
+};
 
 export default FlashSale;
