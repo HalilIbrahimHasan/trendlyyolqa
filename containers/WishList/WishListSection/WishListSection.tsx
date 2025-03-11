@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React from 'react';
 import {
     Box,
@@ -39,46 +39,45 @@ const CartButton = styled(Button)(({theme}) => ({
     },
 }));
 
-
 const WishlistSection = () => {
     const products = [
         {
-            id: 1,
+            id: '1',  // Changed id to string
             name: 'HAVIT HV-G92 Gamepad',
             image: 'assets/png/gamepad.png',
             price: 120,
             oldPrice: 160,
-            discount:30,
+            discount: 30,
             rating: 5,
             reviews: 88,
         },
         {
-            id: 2,
+            id: '2',  // Changed id to string
             name: 'HAVIT HV-G92 Gamepad',
             image: 'assets/png/gamepad.png',
             price: 120,
             oldPrice: 160,
-            discount:30,
+            discount: 30,
             rating: 5,
             reviews: 88,
         },
         {
-            id: 3,
+            id: '3',  // Changed id to string
             name: 'AK-900 Wired Keyboard',
             image: 'assets/png/keyboard.png',
             price: 960,
             oldPrice: 1160,
-            discount:30,
+            discount: 30,
             rating: 4.5,
             reviews: 75,
         },
         {
-            id: 4,
+            id: '4',  // Changed id to string
             name: 'AK-900 Wired Keyboard',
             image: 'assets/png/keyboard.png',
             price: 960,
             oldPrice: 1160,
-            discount:30,
+            discount: 30,
             rating: 4.5,
             reviews: 75,
         }
@@ -86,7 +85,7 @@ const WishlistSection = () => {
 
     const wishlistItems = [
         {
-            id: 1,
+            id: '1',  // Changed id to string
             name: 'Gucci duffle bag',
             image: '/assets/png/bag.png',
             price: 960,
@@ -94,21 +93,21 @@ const WishlistSection = () => {
             discount: 35
         },
         {
-            id: 2,
+            id: '2',  // Changed id to string
             name: 'RGB liquid CPU Cooler',
             image: '/assets/png/cpu-cooler.png',
             price: 1960,
             originalPrice: 1960
         },
         {
-            id: 3,
+            id: '3',  // Changed id to string
             name: 'GP11 Shooter USB Gamepad',
             image: '/assets/png/gamepad.png',
             price: 550,
             originalPrice: 550
         },
         {
-            id: 4,
+            id: '4',  // Changed id to string
             name: 'Quilted Satin Jacket',
             image: '/assets/png/coat.png',
             price: 750,
