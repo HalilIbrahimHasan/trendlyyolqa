@@ -15,8 +15,17 @@ import {
 } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
+import Image from 'next/image';
 
-const CartItem = ({ image, name, price, quantity }) => {
+// Define the types for the CartItem props
+interface CartItemProps {
+  image: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+const CartItem: React.FC<CartItemProps> = ({ image, name, price, quantity }) => {
     const [qty, setQty] = useState(quantity);
 
     return (
@@ -26,20 +35,21 @@ const CartItem = ({ image, name, price, quantity }) => {
                     sx={{
                         position: 'absolute',
                         top: -10,
-                        left:-10,
+                        left: -10,
                         p: 0.1,
                         bgcolor: '#DB4444',
-                        color:'white',
+                        color: 'white',
                         border: '1px solid #DB4444',
                         '&:hover': {
-                            color:'black',
+                            color: 'black',
                             bgcolor: 'white'
                         }
                     }}
                 >
                     <CloseIcon fontSize="small" />
                 </IconButton>
-                <Box component="img" src={image} alt={name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                {/* Replaced <img> with <Image /> for optimization */}
+                <Image src={image} alt={name} width={60} height={60} objectFit="contain" />
             </Box>
             <Box sx={{ flex: 1 }}>
                 <Typography variant="body1">{name}</Typography>
@@ -51,7 +61,7 @@ const CartItem = ({ image, name, price, quantity }) => {
                     onChange={(e) => setQty(e.target.value)}
                     IconComponent={KeyboardArrowDownIcon}
                     sx={{
-                        color:'black',
+                        color: 'black',
                         width: 70,
                         '.MuiOutlinedInput-notchedOutline': {
                             borderColor: '#e0e0e0'
@@ -65,9 +75,7 @@ const CartItem = ({ image, name, price, quantity }) => {
                     }}
                 >
                     {[1, 2, 3, 4, 5].map((num) => (
-                        <MenuItem key={num} value={num} color={'black'} sx={{
-                            color:'black'
-                        }}>
+                        <MenuItem key={num} value={num} color={'black'} sx={{ color: 'black' }}>
                             {num.toString().padStart(2, '0')}
                         </MenuItem>
                     ))}
