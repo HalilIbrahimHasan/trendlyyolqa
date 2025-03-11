@@ -38,7 +38,7 @@ const ProductCard = styled(Card)(({theme}) => ({
     },
 }));
 
-const DiscountBadge = styled(Box)<{ theme: any; color: string | undefined }>`
+const DiscountBadge = styled(Box)<{ color?: string }>`
     position: absolute;
     top: 12px;
     left: 12px;
@@ -48,6 +48,7 @@ const DiscountBadge = styled(Box)<{ theme: any; color: string | undefined }>`
     border-radius: 4px;
     z-index: 1;
 `;
+
 
 
 const IconWrapper = styled(Box)(({theme}) => ({
